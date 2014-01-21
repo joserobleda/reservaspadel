@@ -1,0 +1,7 @@
+{
+	"name"         : "neasy-test",
+	"version"      : "0.0.1",
+	"dependencies" : {
+		"neasy": "git+ssh://git@github.com:joserobleda/neasy.js.git#master"
+	}
+}
