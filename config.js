@@ -9,6 +9,6 @@ module.exports = {
 	},
 
 	database: {
-		name: 'neasy-test'
+		name: 'reservaspadel'
 	}
 }
