@@ -2,7 +2,7 @@
 
 	function render(city) {
 		$('#mainsearch').val(city);
-		$('#main').animate({top:'0'}, 'slow', function () {
+		$('#main').animate({top:'15px'}, 'slow', function () {
 			$('#results').show().animate({ height: "450px" }, 1500);
 		});
 
