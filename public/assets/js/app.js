@@ -2,8 +2,8 @@
 
 	function render(city) {
 		$('#mainsearch').val(city);
-		$('#main').animate({top:'15px'}, 'slow', function () {
-			$('#results').show().animate({ height: "450px" }, 1500);
+		$('#main').animate({top:'20px'}, 'slow', function () {
+			$('#results').slideDown('slow');
 		});
 
 	}
