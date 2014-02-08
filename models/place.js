@@ -3,10 +3,10 @@
 	var Model 	= require('neasy/model');
 
 
-	var City = Model.extend({
+	var Place = Model.extend({
 		
 	});
 
-	City.class = 'city';
+	Place.class = 'place';
 
-	module.exports = City;
+	module.exports = Place;
