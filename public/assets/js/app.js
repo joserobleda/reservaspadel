@@ -6,6 +6,9 @@
 			$('#results').slideDown('slow');
 		});
 
+		$.post("/places", { city: city }).done(function(res) {
+			$('#results').html(res);
+		});
 	}
 
 	function success(position) {
