@@ -4,5 +4,10 @@
         <span class="title">{{ place.name }}</span>
         <span class="distance">-- km</span>
     </li>
-    {% endfor %}
+    {% else %}
+        <li>
+           <span class="title">No hay pistas en tu ciudad, prueba con otra búsqueda.</span>
+    </li>
+    {% endif %}
+
 </ul>
