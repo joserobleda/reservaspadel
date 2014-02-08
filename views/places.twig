@@ -2,7 +2,7 @@
     {% for place in places %}
     <li>
         <span class="title">{{ place.name }}</span>
-        <span class="distance">-- km</span>
+        <span class="distance">{{ place.distance }}</span>
     </li>
     {% else %}
         <li>

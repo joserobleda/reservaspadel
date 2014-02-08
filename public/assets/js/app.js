@@ -1,12 +1,12 @@
 (function(w, undefined) {
 
-	function render(city) {
+	function render(city, coords) {
 		$('#mainsearch').val(city);
 		$('#main').animate({top:'20px'}, 'slow', function () {
 			$('#results').slideDown('slow');
 		});
 
-		$.post("/places", { city: city }).done(function(res) {
+		$.post("/places", { city: city, lat: coords['d'], lng: coords['e']}).done(function(res) {
 			$('#results').html(res);
 		});
 	}
@@ -34,7 +34,7 @@
 			if (status == google.maps.GeocoderStatus.OK) {
 				if (results[0]) {
 					city = results[0].address_components[2].long_name;
-					render(city);
+					render(city, coords);
 				}
 			}
 		});
