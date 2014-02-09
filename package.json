@@ -1,6 +1,6 @@
 {
 	"name"         : "reservas-padel",
-	"version"      : "0.0.1",
+	"version"      : "0.0.2",
 	"dependencies" : {
 		"neasy": "git://github.com/joserobleda/neasy.js.git#master",
 		"google-distance": "*",
