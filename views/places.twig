@@ -6,7 +6,13 @@
                 <div class="row title">{{ place.name }}</div>
                  <div class="row info">Distancia: {{ place.distance }}</div>
                 <div class="row info">Tlf: {{ place.phones|first }}</div>
-                <div class="row info"><a href="{{ place.web }}" target="_BLANK">Ir a la web</a></div>
+                {% if place.price.range %}
+                  <div class="row info">Precio: {{ place.price.range }}</div>
+                {% endif %}
+                {% if place.web %}
+                    <div class="row info"><a href="{{ place.web }}" target="_BLANK">Ir a la web</a></div>
+                {% endif %}
+                 
             </div>
             <div class="four columns mobile-two">
                 Map
