@@ -7,7 +7,7 @@
 		});
 
 		$.post("/places", { city: city, lat: coords['d'], lng: coords['e']}).done(function(res) {
-			$('#results').html(res);
+			$('#places').html(res);
 		});
 	}
 
@@ -49,7 +49,7 @@
 	$('#mainsearch').typeahead({local: cities})
 	.on('typeahead:selected', function(e){
      	$.post("/places", { city: $(this).val() }).done(function(res) { 
-			$('#results').html(res);
+			$('#places').html(res);
 		});
    });
 

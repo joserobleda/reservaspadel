@@ -14,20 +14,25 @@
 <body>
 	<div id="background"></div>
 
-	<div id="main">
-        <input  id="mainsearch" type="search" placeholder="¿Dónde quieres jugar?" />
-
-	</div>
-    <div id="results">
-       <ul>
-            <li>
-                <img src="/assets/images/loading.gif"/>
-                <span>
-                    Espera mientras se cargan las pistas más cercanas
-                </span>
-            </li>
-       </ul>
+	<div id="main" class="row">
+        <div class="ten columns offset-by-one">
+            <input id="mainsearch" type="search" placeholder="¿Dónde quieres jugar?" />
+         </div>
+	   <div class="one columns"></div>
     </div>
+    
+    <div id="results" class="row">
+        <div id="places" class="ten columns offset-by-one">
+            <div class="row empty">
+                <div class="eleven columns offset-by-one">
+                    <img src="/assets/images/loading.gif"/>
+                    <span>Espera mientras se cargan las pistas más cercanas</span>
+                </div>
+            </div>
+        </div>
+        <div class="one columns"></div>
+    </div>
+
 </body>
 <script src="/assets/js/vendor/jquery-1.9.1.min.js"></script>
 <script src="/assets/js/vendor/typeahead.js"></script>
