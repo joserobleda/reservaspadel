@@ -4,11 +4,11 @@
 	var distance 	= require('google-distance');
 	var async 		= require('async');
 
-	Place.getDuration = function (coords, address, city, cb) {
+	Place.getDuration = function (origin, destination, cb) {
 		distance.get({
 			units: 'metric',
-			origin: coords.lat + ',' + coords.lng, 
-			destination: address + " " + city
+			origin: origin,
+			destination: destination
 		}, function(err, data) {
 			if (err) cb(null, null);
 			
@@ -21,7 +21,7 @@
 	};
 
 	Place.getPlaces = function (req, res, next) {
-		var self, distance, coords;
+		var self, distance, origin, destination;
 
 		self = this;
 
@@ -35,12 +35,16 @@
 			async.forEach(places, function (place, cb) {
 				
 				if (typeof place.address !== 'undefined') {
-					coords = {
-						lat: req.body.lat,
-						lng: req.body.lng
-					}
 
-					Place.getDuration(coords, place.address, req.body.city, function (err, distance) {
+					if (req.body.lat && req.body.lng) {
+						origin 	= req.body.lat + ',' + req.body.lng;
+					} else {
+						origin 	= req.body.city;
+					}
+					
+					destination = place.address + " " + req.body.city;
+
+					Place.getDuration(origin, destination, function (err, distance) {
 						if (distance) {
 							place.distance = distance;
 							cb(null);
@@ -55,15 +59,11 @@
 
 			}, function(err) {
 
-				places.sort( function (a,b) {
-					if (a.distance < b.distance)
-						return -1;
-					if (a.distance > b.distance)
-						return 1;
-					return 1;
+				async.sortBy(places, function(place, callback){
+					callback(null, place.distance);
+				}, function(err, results){
+					res.render('places.twig', {places: results});
 				});
-
-				res.render('places.twig', {places: places});
 
 			});
 		});
