@@ -1,5 +1,5 @@
 {
-	"name"         : "reservas-padel",
+	"name"         : "reservaspadel",
 	"version"      : "0.0.2",
 	"dependencies" : {
 		"neasy": "git://github.com/joserobleda/neasy.js.git#master",
