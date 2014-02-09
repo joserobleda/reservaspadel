@@ -1,8 +1,8 @@
 {
-	"name"         : "neasy-test",
+	"name"         : "reservas-palde",
 	"version"      : "0.0.1",
 	"dependencies" : {
-		"neasy": "git+ssh://git@github.com:joserobleda/neasy.js.git#master",
+		"neasy": "git://github.com:joserobleda/neasy.js.git#master",
 		"google-distance": "*",
 		"async": "*"
 	}
