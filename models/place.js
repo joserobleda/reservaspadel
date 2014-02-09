@@ -7,6 +7,6 @@
 		
 	});
 
-	Place.class = 'place';
+	Place.class = 'places';
 
 	module.exports = Place;
