@@ -1,6 +1,6 @@
 (function(w, undefined) {
 
-	function render(city, coords) {
+	function render(city, position) {
 		$('#mainsearch').val(city);
 		$('#main').addClass('top');
 
@@ -9,7 +9,7 @@
 		}, 650);
 		
 
-		$.post("/places", { city: city, lat: coords['d'], lng: coords['e']}).done(function(res) {
+		$.post("/places", { city: city, lat: position.coords.latitude, lng: position.coords.longitude}).done(function(res) {
 			$('#places').html(res);
 		});
 	}
@@ -17,27 +17,29 @@
 	function success(position) {
 		var coord, map, latlng, coords, geocoder, city;
 
-		coords = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+		// coords = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
-		options = {
-			zoom: 15,
-			center: coords,
-			mapTypeControl: false,
-			navigationControlOptions: {
-				style: google.maps.NavigationControlStyle.SMALL
-			},
-			mapTypeId: google.maps.MapTypeId.ROADMAP
-		};
+		// options = {
+		// 	zoom: 15,
+		// 	center: coords,
+		// 	mapTypeControl: false,
+		// 	navigationControlOptions: {
+		// 		style: google.maps.NavigationControlStyle.SMALL
+		// 	},
+		// 	mapTypeId: google.maps.MapTypeId.ROADMAP
+		// };
 
-		map 		= new google.maps.Map(document.getElementById("background"), options);
-		latlng 		= new google.maps.LatLng(coords['d'], coords['e']);
+		// map 		= new google.maps.Map(document.getElementById("background"), options);
+		latlng 		= new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 		geocoder 	= new google.maps.Geocoder();
+
+		// $('#background').css('background-image', 'url(http://maps.googleapis.com/maps/api/staticmap?key=AIzaSyAmbXq8KeJgDXoUTdpCyr7K-n3mrKBpPMg&center='+ position.coords.latitude +','+ position.coords.longitude +'&zoom=10&size=1600x1600&sensor=false)');
 
 		geocoder.geocode({'latLng': latlng}, function(results, status) {
 			if (status == google.maps.GeocoderStatus.OK) {
 				if (results[0]) {
 					city = results[0].address_components[2].long_name;
-					render(city, coords);
+					render(city, position);
 				}
 			}
 		});
