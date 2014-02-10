@@ -2,9 +2,12 @@
 
 	function render(city, coords) {
 		$('#mainsearch').val(city);
-		$('#main').animate({top:'20px'}, 'slow', function () {
+		$('#main').addClass('top');
+
+		setTimeout(function () {
 			$('#results').slideDown('slow');
-		});
+		}, 650);
+		
 
 		$.post("/places", { city: city, lat: coords['d'], lng: coords['e']}).done(function(res) {
 			$('#places').html(res);

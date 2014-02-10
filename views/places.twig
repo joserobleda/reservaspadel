@@ -2,7 +2,7 @@
     {% for place in places %}
     <li>
         <div class="row">
-            <div class="eight columns mobile-two">
+            <div class="eight columns">
                 <div class="row title">{{ place.name }}</div>
                  <div class="row info">Distancia: {{ place.distance }}</div>
                 <div class="row info">Tlf: {{ place.phones|first }}</div>
@@ -14,7 +14,7 @@
                 {% endif %}
                  
             </div>
-            <div class="four columns mobile-two">
+            <div class="four columns">
                 Map
             </div>
         </div>
