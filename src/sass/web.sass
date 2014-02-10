@@ -36,13 +36,13 @@
 
 #results
 	overflow: hidden
-	height: 0
+	max-height: 0
 	margin-top: 100px
-
+	padding-bottom: 50px
 	&.open
 		overflow: hidden
-		transition: height ease-out 1s
-		height: inherit
+		transition: max-height  1s
+		max-height: 10000000px
 	
 
 #places	
