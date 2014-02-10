@@ -5,7 +5,7 @@
 		$('#main').addClass('top');
 
 		setTimeout(function () {
-			$('#results').slideDown('slow');
+			$('#results').addClass('open');
 		}, 650);
 		
 

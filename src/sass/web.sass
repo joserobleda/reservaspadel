@@ -20,13 +20,14 @@
 	height: 80px
 	margin-top: -40px
 	padding-top: 15px
-	transition: top ease-in 0.5s
+	transition: top ease-in 0.5s, background-color ease-in 0.5s, border ease-in 0.5s
 
 	&.top
-		top: 0
+		top: -1px
 		margin-top: 0
 		background-color: #fff
 		border-bottom: 1px solid #ccc
+		border-top: 1px solid #ccc
 
 	input
 		height: 50px
@@ -34,8 +35,14 @@
 		background-color: white !important
 
 #results
-	display: none
+	overflow: hidden
+	height: 0
 	margin-top: 100px
+
+	&.open
+		overflow: hidden
+		transition: height ease-out 1s
+		height: inherit
 	
 
 #places	
