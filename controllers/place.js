@@ -5,19 +5,8 @@
 	var async 		= require('async');
 
 	Place.getDuration = function (origin, destination, cb) {
-		distance.get({
-			units: 'metric',
-			origin: origin,
-			destination: destination
-		}, function(err, data) {
-			if (err) cb(null, null);
-			
-			if (typeof data !== 'undefined') {
-				cb(null, data.distance);
-			} else {
-				cb(null, null);
-			}
-		});
+		cb(null, 0);
+		
 	};
 
 	Place.getPlaces = function (req, res, next) {
