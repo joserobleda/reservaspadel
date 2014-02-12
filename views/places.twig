@@ -1,27 +1,54 @@
 <ul>
     {% for place in places %}
-    <li>
-        <div class="row">
-            <div class="small-6 large-8 columns">
-                <div class="row title">{{ place.name }}</div>
-                 <div class="row info">Distancia: <strong>{{ place.distance }}</strong></div>
-                <div class="row info">Tlf: {{ place.phones|first }}</div>
-                {% if place.price.range %}
-                  <div class="row info">Precio: {{ place.price.range }}</div>
-                {% endif %}
-                {% if place.web %}
-                    <div class="row info"><a href="{{ place.web }}" target="_BLANK">Ir a la web</a></div>
-                {% endif %}
-               {% if place.address %}
-                    <div class="row info">Dir: {{ place.address }}</div>
-                {% endif %}
+        <li class="small-12 large-6 columns panel">
+            <div class="place large-12 column">
+                <div class="small-6 large-8 columns">
+                    <div class="row title">{{ place.name }}</div>
+                   
+                    <div class="row info spacer">
+                        {% if place.price.range %}
+                            Precio: {{ place.price.range }}
+                        {% else %}
+                            Precio: No info
+                        {% endif %}
+                    </div>
+                    
+                    <div class="row info spacer">
+                         Tlf: 
+                         {% if place.phones|first %}
+                            {{ place.phones|first }}
+                        {% else %} 
+                            No info
+                        {% endif %}
+                    </div>
+                    
+                    <div class="row info spacer">
+                         {% if place.web %}
+                             <a href="{{ place.web }}" target="_BLANK">Ir a la web</a></span>
+                        {% else %}
+                            No web
+                        {% endif %}
+                    </div>
 
+                    <div class="row info spacer">
+                         {% if place.address %}
+                            Dir: {{ place.address }}
+                        {% else %}
+                           Dir: No info
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="small-6 large-4 columns map">
+                     <div class="row info center">
+                            Está solo a <strong>{{ place.distance }}</strong>
+                    </div>
+                    <div class="row info spacer">
+                        <a target="_BLANK" href="http://maps.google.com/?q={{place.address|url_encode}}%20{{city|url_encode}}"><img src="http://maps.googleapis.com/maps/api/staticmap?center={{place.address|url_encode}}%20{{city|url_encode}}&key=AIzaSyAmbXq8KeJgDXoUTdpCyr7K-n3mrKBpPMg&sensor=false&size=200x200&zoom=13&markers={{place.address|url_encode}}%20{{city|url_encode}}"/></a>
+                    </div>
+                </div>
             </div>
-            <div class="small-6 large-4 columns map">
-                <a target="_BLANK" href="http://maps.google.com/?q={{place.address|url_encode}}%20{{city|url_encode}}"><img src="http://maps.googleapis.com/maps/api/staticmap?center={{place.address|url_encode}}%20{{city|url_encode}}&key=AIzaSyAmbXq8KeJgDXoUTdpCyr7K-n3mrKBpPMg&sensor=false&size=200x200&zoom=13&markers={{place.address|url_encode}}%20{{city|url_encode}}"/></a>
-            </div>
-        </div>
-    </li>
+        </li>
     {% else %}
         <li>
            <span class="title">No hay pistas en tu ciudad, prueba con otra búsqueda.</span>
