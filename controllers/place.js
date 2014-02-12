@@ -1,11 +1,23 @@
 
 	var Place 		= require('../models/place');
 	var db 			= require('neasy/lib/db.js');
-	var distance 	= require('google-distance');
+	var distance 	= require('../lib/distance.js');
 	var async 		= require('async');
 
 	Place.getDuration = function (origin, destination, cb) {
-		cb(null, 0);
+		distance.get({
+			units: 'metric',
+			origin: origin,
+			destination: destination
+		}, function(err, data) {
+			if (err) cb(null, null);
+
+			if (data) {
+				cb(null, data.distance);
+			} else {
+				cb(null, null);
+			}
+		});
 		
 	};
 
@@ -51,7 +63,7 @@
 				async.sortBy(places, function(place, callback){
 					callback(null, place.distance);
 				}, function(err, results){
-					res.render('places.twig', {places: results});
+					res.render('places.twig', {places: results ,city: req.body.city});
 				});
 
 			});

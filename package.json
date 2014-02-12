@@ -3,7 +3,6 @@
 	"version"      : "0.0.5",
 	"dependencies" : {
 		"neasy": "git://github.com/joserobleda/neasy.js.git#master",
-		"google-distance": "*",
 		"async": "*"
 	}
 }
