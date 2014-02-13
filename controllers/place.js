@@ -26,17 +26,17 @@
 
 		city = req.body.city;
 
+		// track in ga
+		req.trackEvent('submit', city);
+		
 		if (req.body.coords) {
 			origin 	= req.body.coords.lat + ',' + req.body.coords.lng;
+			req.trackEvent('origin', origin);
 		} else {
 			origin 	= city;
 		}
 
-		// track in ga
-		req.trackEvent('search', {
-			q: city,
-			origin: origin
-		});
+
 
 		db.find('places', {'city.title': new RegExp(req.body.city, 'i')}, function(err, places) {
 		
