@@ -1,15 +1,23 @@
 (function(w, undefined) {
 
-	function render(city, position) {
+	function render (city, position) {
+		var coords;
+
 		$('#mainsearch').val(city);
 		$('#main').addClass('top');
 
 		setTimeout(function () {
 			$('#results').addClass('open');
 		}, 650);
-		
 
-		$.post("/places", { city: city, lat: position.coords.latitude, lng: position.coords.longitude}).done(function(res) {
+		if (position) { 
+			coords = {
+				lat: position.coords.latitude,
+				lng: position.coords.longitude
+			}
+		}
+
+		$.post("/places", { city: city, coords: coords}).done(function(res) {
 			$('#places').html(res);
 		});
 	}
@@ -39,7 +47,7 @@
 			if (status == google.maps.GeocoderStatus.OK) {
 				if (results[0]) {
 					city = results[0].address_components[2].long_name;
-					render(city, position);
+					render (city, position);
 				}
 			}
 		});
@@ -53,9 +61,9 @@
 	 
 	$('#mainsearch').typeahead({local: cities})
 	.on('typeahead:selected', function(e){
-     	$.post("/places", { city: $(this).val() }).done(function(res) { 
-			$('#places').html(res);
-		});
+		var val = $(this).val();
+		render(val, null);
+		
    });
 
 

@@ -37,8 +37,8 @@
 				
 				if (typeof place.address !== 'undefined') {
 
-					if (req.body.lat && req.body.lng) {
-						origin 	= req.body.lat + ',' + req.body.lng;
+					if (req.body.coords) {
+						origin 	= req.body.coords.lat + ',' + req.body.coords.lng;
 					} else {
 						origin 	= req.body.city;
 					}
