@@ -22,28 +22,35 @@
 	};
 
 	Place.getPlaces = function (req, res, next) {
-		var self, distance, origin, destination;
+		var self = this, city, distance, origin, destination;
 
-		self = this;
+		city = req.body.city;
+
+		if (req.body.coords) {
+			origin 	= req.body.coords.lat + ',' + req.body.coords.lng;
+		} else {
+			origin 	= city;
+		}
+
+		// track in ga
+		req.trackEvent('search', {
+			q: city,
+			origin: origin
+		});
 
 		db.find('places', {'city.title': new RegExp(req.body.city, 'i')}, function(err, places) {
 		
 			if (err) {
-				console.error(err);
-				return;
+				return console.error(err);
 			}
+
+
 		
 			async.forEach(places, function (place, cb) {
 				
 				if (typeof place.address !== 'undefined') {
-
-					if (req.body.coords) {
-						origin 	= req.body.coords.lat + ',' + req.body.coords.lng;
-					} else {
-						origin 	= req.body.city;
-					}
 					
-					destination = place.address + " " + req.body.city;
+					destination = place.address + " " + city;
 
 					Place.getDuration(origin, destination, function (err, distance, value) {
 						if (distance && value) {
