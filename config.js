@@ -10,5 +10,10 @@ module.exports = {
 
 	database: {
 		name: 'reservaspadel'
+	},
+
+	ga: {
+		code: 'UA-48076103-1',
+		domain: 'reservarpistapadel.es'
 	}
 }
