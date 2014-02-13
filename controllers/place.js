@@ -13,7 +13,7 @@
 			if (err) cb(null, null);
 
 			if (data) {
-				cb(null, data.distance);
+				cb(null, data.distance, data.value);
 			} else {
 				cb(null, null);
 			}
@@ -45,9 +45,11 @@
 					
 					destination = place.address + " " + req.body.city;
 
-					Place.getDuration(origin, destination, function (err, distance) {
-						if (distance) {
-							place.distance = distance;
+					Place.getDuration(origin, destination, function (err, distance, value) {
+						if (distance && value) {
+							place.distance 	= distance;
+							place.value 	= value;
+
 							cb(null);
 						} else {
 							cb(null);
@@ -59,9 +61,8 @@
 				}
 
 			}, function(err) {
-
 				async.sortBy(places, function(place, callback){
-					callback(null, place.distance);
+					callback(null, place.value);
 				}, function(err, results){
 					res.render('places.twig', {places: results ,city: req.body.city});
 				});
