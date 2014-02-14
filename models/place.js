@@ -5,19 +5,32 @@
 
 
 	var Place = Model.extend({
+		collection: 'places',
+
 		getDistance: function (from) {
-			var to = this.get('coords');
+			var distance, meters, km, unit, readable;
 
-			console.log("to:" + to);
+			distance 	= geolib.getDistance(from, this.get('coords'));
+			meters 		= Math.round(distance / 100);
+			readable 	= meters;
+			km 			= meters / 1000;
+			unit 		= 'm';
 
-			return geolib.getDistance(from, to);
+			// better to read in km
+			if (meters > 999) {
+				unit = 'Km';
+				readable = km;
+			}
+
+			return {
+				meters: meters,
+				km: km,
+				readable: readable,
+				unit: unit
+			}
 		}
 	});
 
 	Place.class = 'places';
-
-
-	// map the method
-	// Place.getDistance = geolib.getDistance;
 
 	module.exports = Place;
