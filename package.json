@@ -1,8 +1,9 @@
 {
-	"name"         : "reservaspadel",
-	"version"      : "0.0.5",
-	"dependencies" : {
-		"neasy": "git://github.com/joserobleda/neasy.js.git#master",
-		"async": "*"
-	}
+  "name": "reservaspadel",
+  "version": "0.0.5",
+  "dependencies": {
+    "neasy": "git://github.com/joserobleda/neasy.js.git#master",
+    "async": "*",
+    "geolib": "~1.3.5"
+  }
 }
