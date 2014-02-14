@@ -33,7 +33,7 @@
 			// create the distance prop
 			places.each(function (place) {
 				var distance = place.getDistance(coords);
-				place.set('distance', { meters: distance });
+				place.set('distance', distance);
 			});
 
 			// sort by distance
