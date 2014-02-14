@@ -22,6 +22,35 @@
 	};
 
 	Place.getPlaces = function (req, res, next) {
+
+		var city 	= req.body.city;
+		var search 	= {'city.title': new RegExp(city, 'i')};
+		var coords 	= req.body.coords;
+
+		if (!coords) {
+			
+		}
+
+
+		Place.find(search).then(function (places) {
+
+			places.forEach(function(place) {
+				console.log(place.get('coords'));
+
+				var distance = place.getDistance({
+					latitude: coords.lat,
+					longitude: coord.lng
+				});
+
+				console.log('distance', distance);
+
+
+			});
+		});
+
+
+
+		return;
 		var self = this, city, distance, origin, destination;
 
 		city = req.body.city;
