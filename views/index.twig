@@ -1,11 +1,14 @@
-<html>
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
     <head>
         <meta charset="utf-8">
 
         <title>Reservas de padel</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-        <meta name="HandheldFriendly" content="true" />
-        <script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyAmbXq8KeJgDXoUTdpCyr7K-n3mrKBpPMg&sensor=true"></script>
+        <script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyAmbXq8KeJgDXoUTdpCyr7K-n3mrKBpPMgsensor=true"></script>
         <link href="//raw.github.com/jharding/typeahead.js-bootstrap.css/master/typeahead.js-bootstrap.css" rel="stylesheet" media="screen">
         <link rel="stylesheet" href="/assets/dev/css/normalize.css" />
         <link rel="stylesheet" href="/assets/dev/css/foundation.min.css" />
@@ -29,7 +32,7 @@
                         <div class="large-12 columns">
                             <div class="row">
                                 <div class="small-2 large-1 columns">
-                                    <img src="/assets/dev/images/loading.gif"/>
+                                    <img src="/assets/dev/images/loading.gif" alt="loading" />
                                 </div>
                                 <div class="small-10 large-11 columns">
                                     <span>Espera mientras se cargan las pistas más cercanas</span>
@@ -40,9 +43,9 @@
                 </div>
             </div>
         </div>
-
+        
+        <script src="/assets/dev/js/vendor/jquery-1.9.1.min.js"></script>
+        <script src="/assets/dev/js/vendor/typeahead.js"></script>
+        <script data-main="/assets/dev/js/app.js" src="/assets/dev/js/vendor/require.js"></script>
     </body>
-    <script src="/assets/dev/js/vendor/jquery-1.9.1.min.js"></script>
-    <script src="/assets/dev/js/vendor/typeahead.js"></script>
-    <script data-main="/assets/dev/js/app.js" src="/assets/dev/js/vendor/require.js"></script>
 </html>
