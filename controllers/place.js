@@ -1,5 +1,6 @@
 
 	var Place 		= require('../models/place');
+	var maps 		= require('../lib/maps.js');
 
 
 	Place.getPlaces = function (req, res, next) {
@@ -11,17 +12,16 @@
 
 		if (coords) {
 			req.trackEvent('origin', coords.lat + ',' + coords.lng);
+			// coords to compare
+			coords = {
+				latitude: parseInt(coords.lat, 10),
+				longitude: parseInt(coords.lng, 10)
+			};
 		} else {
-			return next('no coords');
+			maps.getCoords(city).then(function (coordenates) {
+				coords = coordenates;
+			});
 		}
-
-
-		// coords to compare
-		coords = {
-			latitude: parseInt(coords.lat, 10),
-			longitude: parseInt(coords.lng, 10)
-		};
-
 
 		Place.find(search).then(function (places) {
 			
