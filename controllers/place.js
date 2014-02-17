@@ -7,28 +7,35 @@
 		var city 	= req.body.city;
 		var search 	= {'city.title': new RegExp(city, 'i')};
 		var coords 	= req.body.coords;
+		var places;
 
 		req.trackEvent('submit', city);
 
 		if (coords) {
 			req.trackEvent('origin', coords.lat + ',' + coords.lng);
+
 			// coords to compare
 			coords = {
 				latitude: parseInt(coords.lat, 10),
 				longitude: parseInt(coords.lng, 10)
 			};
-		} else {
-			maps.getCoords(city).then(function (coordenates) {
-				coords = coordenates;
-			});
 		}
 
-		Place.find(search).then(function (places) {
-			
+		
+
+		Place.find(search).then(function (collection) {
+			// save into places
+			places = collection;
+
+			return coords ? coords : maps.getCoords(city);
+
+		// when coords
+		}).then(function(coords) {
 			// called to sort
 			places.comparator = function (place) {
 				return place.get('distance').meters;
 			};
+
 
 			// create the distance prop
 			places.each(function (place) {
@@ -43,6 +50,8 @@
 			// render the view 
 			res.render('places.twig', {places: places.toJSON(), city: city});
 		});
+
+		
 
 	};
 
