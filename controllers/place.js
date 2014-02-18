@@ -1,4 +1,6 @@
 
+	var app 		= require('neasy');
+	var Q			= app.require('q');
 	var Place 		= require('../models/place');
 	var maps 		= require('../lib/maps.js');
 
@@ -7,7 +9,7 @@
 		var city 	= req.body.city;
 		var search 	= {'city.title': new RegExp(city, 'i')};
 		var coords 	= req.body.coords;
-		var places;
+		var places 	= Place.find(search);
 
 		req.trackEvent('submit', city);
 
@@ -22,15 +24,9 @@
 		}
 
 		
+		coords = coords ? coords : maps.getCoords(city);
 
-		Place.find(search).then(function (collection) {
-			// save into places
-			places = collection;
-
-			return coords ? coords : maps.getCoords(city);
-
-		// when coords
-		}).then(function(coords) {
+		Q.all([places, coords]).spread(function (places, coords) {
 			// called to sort
 			places.comparator = function (place) {
 				return place.get('distance').meters;
@@ -45,7 +41,6 @@
 
 			// sort by distance
 			places.sort();
-
 
 			// render the view 
 			res.render('places.twig', {places: places.toJSON(), city: city});
