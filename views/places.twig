@@ -12,6 +12,18 @@
                     <div class="row spacer">
                         <div class="columns">
                             <span class="info">
+                                {% if place.address %}
+                                    {{ place.address }}
+                                {% else %}
+                                    
+                                {% endif %}
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="row spacer">
+                        <div class="columns">
+                            <span class="info">
                                 {% if place.price.range %}
                                     Precio: {{ place.price.range }}
                                 {% else %}
@@ -38,21 +50,9 @@
                         <div class="columns">
                             <span class="info">
                                 {% if place.web %}
-                                     <a href="{{ place.web }}" target="_BLANK">Ir a la web</a></span>
+                                     <a href="{{ place.web }}" target="_blank">Ir a la web</a></span>
                                 {% else %}
                                     No web
-                                {% endif %}
-                            </span>
-                        </div>
-                    </div>
-
-                    <div class="row spacer">
-                        <div class="columns">
-                            <span class="info">
-                                {% if place.address %}
-                                    {{ place.address }}
-                                {% else %}
-                                    
                                 {% endif %}
                             </span>
                         </div>
@@ -67,7 +67,7 @@
                     </div>
                     <div class="row info spacer">
                         <div class="columns">
-                            <a target="_BLANK" href="http://maps.google.com/?q={{place.address|url_encode}}%20{{city|url_encode}}"><img src="http://maps.googleapis.com/maps/api/staticmap?center={{place.address|url_encode}}%20{{city|url_encode}}&key=AIzaSyAmbXq8KeJgDXoUTdpCyr7K-n3mrKBpPMg&sensor=false&size=200x200&zoom=13&markers={{place.address|url_encode}}%20{{city|url_encode}}"/></a>
+                            <a target="_BLANK" href="http://maps.google.com/?q={{place.address|url_encode}}%20{{city|url_encode}}"><img src="http://maps.googleapis.com/maps/api/staticmap?center={{place.address|url_encode}}%20{{city|url_encode}}&key=AIzaSyAmbXq8KeJgDXoUTdpCyr7K-n3mrKBpPMg&sensor=false&size=128x128&zoom=13&markers={{place.address|url_encode}}%20{{city|url_encode}}" height="128" width="128" /></a>
                         </div>
                     </div>
                 </div>
