@@ -23,6 +23,8 @@
 	}
 
 	function success(position) {
+		navigator.geolocation.getCurrentPosition(success, {enableHighAccuracy: true});
+
 		var coord, map, latlng, coords, geocoder, city;
 
 		// coords = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
