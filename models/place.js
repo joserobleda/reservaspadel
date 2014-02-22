@@ -11,9 +11,9 @@
 			var distance, meters, km, unit, readable;
 
 			distance 	= geolib.getDistance(from, this.get('coords'));
-			meters 		= Math.round(distance / 100);
+			meters 		= Math.round(distance);
 			readable 	= meters;
-			km 			= meters / 1000;
+			km 			= (meters / 1000).toFixed(1).replace('.0', '');
 			unit 		= 'm';
 
 			// better to read in km

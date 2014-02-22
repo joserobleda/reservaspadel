@@ -23,7 +23,9 @@
 	}
 
 	function success(position) {
-		navigator.geolocation.getCurrentPosition(success, {enableHighAccuracy: true});
+		if (navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition(success, null, {enableHighAccuracy: true});
+		}
 
 		var coord, map, latlng, coords, geocoder, city;
 

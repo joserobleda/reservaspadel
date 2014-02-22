@@ -13,7 +13,7 @@
                         <div class="columns">
                             <span class="info">
                                 {% if place.address %}
-                                    {{ place.address }}
+                                    {{ place.address }}, {{ place.city.title }}
                                 {% else %}
                                     
                                 {% endif %}
