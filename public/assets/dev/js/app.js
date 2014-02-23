@@ -5,7 +5,6 @@
 		var coords;
 
 		$('#mainsearch').val(city);
-		$('#mainsearch').trigger('blur');
 		$('#main').addClass('top');
 
 		setTimeout(function () {
@@ -70,6 +69,7 @@
 	$('#mainsearch').typeahead({local: cities})
 	.on('typeahead:selected', function(e){
 		var val = $(this).val();
+		$('#mainsearch').trigger('blur');
 		render(val, null);	
    });
 
