@@ -38,7 +38,7 @@
                             <span class="info">
                                 Tlf: 
                                 {% if place.phones|first %}
-                                    {{ place.phones|first }}
+                                    <a href="tel:{{ place.phones|first }}">{{ place.phones|first }}</a>
                                 {% else %} 
                                     No info
                                 {% endif %}
