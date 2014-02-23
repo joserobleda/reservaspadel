@@ -72,7 +72,7 @@
 		render(val, null);	
    });
 
-	$('.geolocate').on('click', function () {
+	$('.geolocate img').on('click', function () {
 		render(userCity, userPosition);
 	});
 
