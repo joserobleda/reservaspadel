@@ -1,4 +1,5 @@
 (function(w, undefined) {
+	var userCity, userPosition;
 
 	function render (city, position) {
 		var coords;
@@ -50,7 +51,9 @@
 		geocoder.geocode({'latLng': latlng}, function(results, status) {
 			if (status == google.maps.GeocoderStatus.OK) {
 				if (results[0]) {
-					city = results[0].address_components[2].long_name;
+					city 			= results[0].address_components[2].long_name;
+					userCity 		= city;
+					userPosition	= position;
 					render (city, position);
 				}
 			}
@@ -66,9 +69,11 @@
 	$('#mainsearch').typeahead({local: cities})
 	.on('typeahead:selected', function(e){
 		var val = $(this).val();
-		render(val, null);
-		
+		render(val, null);	
    });
 
+	$('.geolocate').on('click', function () {
+		render(userCity, userPosition);
+	});
 
 })(window);
