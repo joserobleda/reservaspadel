@@ -69,6 +69,7 @@
 	$('#mainsearch').typeahead({local: cities})
 	.on('typeahead:selected', function(e){
 		var val = $(this).val();
+		$('.geolocate').show();	
 		render(val, null);	
    });
 
