@@ -41,9 +41,8 @@
 
 			// sort by distance
 			places.sort();
-
 			// render the view 
-			res.render('places.twig', {places: places.toJSON(), city: city});
+			res.render('places.twig', {places: places.toJSON().slice(0, 20), city: city});
 		});
 
 		
