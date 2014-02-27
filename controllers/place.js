@@ -18,8 +18,8 @@
 
 			// coords to compare
 			coords = {
-				latitude: parseInt(coords.lat, 10),
-				longitude: parseInt(coords.lng, 10)
+				latitude: coords.lat,
+				longitude: coords.lng
 			};
 		}
 
