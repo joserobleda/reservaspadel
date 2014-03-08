@@ -6,10 +6,11 @@
 
 
 	Place.getPlaces = function (req, res, next) {
-		var city 	= req.body.city;
-		var search 	= {'city.title': new RegExp(city, 'i')};
-		var coords 	= req.body.coords;
-		var places 	= Place.find(search);
+		var city 		= req.body.city;
+		var search 		= {'city.title': new RegExp(city, 'i')};
+		var coords 		= req.body.coords;
+		var places 		= Place.find(search);
+		var hasCoords 	= true;
 
 		req.trackEvent('submit', city);
 
@@ -21,7 +22,10 @@
 				latitude: coords.lat,
 				longitude: coords.lng
 			};
+		} else {
+			hasCoords = false;
 		}
+
 
 		
 		coords = coords ? coords : maps.getCoords(city);
@@ -42,7 +46,7 @@
 			// sort by distance
 			places.sort();
 			// render the view 
-			res.render('places.twig', {places: places.toJSON().slice(0, 20), city: city});
+			res.render('places.twig', {places: places.toJSON().slice(0, 20), city: city, hasCoords: hasCoords});
 		});
 
 		
