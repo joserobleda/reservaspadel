@@ -73,6 +73,11 @@
 		render(val, null);	
    });
 
+	$('#mainsearch').on('focus', function () {
+		$(this).val('');
+		$('#places').html('');
+	})
+
 	$('.geolocate img').on('click', function () {
 		render(userCity, userPosition);
 	});
