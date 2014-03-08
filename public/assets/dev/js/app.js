@@ -30,31 +30,22 @@
 
 		var coord, map, latlng, coords, geocoder, city;
 
-		// coords = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-
-		// options = {
-		// 	zoom: 15,
-		// 	center: coords,
-		// 	mapTypeControl: false,
-		// 	navigationControlOptions: {
-		// 		style: google.maps.NavigationControlStyle.SMALL
-		// 	},
-		// 	mapTypeId: google.maps.MapTypeId.ROADMAP
-		// };
-
-		// map 		= new google.maps.Map(document.getElementById("background"), options);
 		latlng 		= new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 		geocoder 	= new google.maps.Geocoder();
-
-		// $('#background').css('background-image', 'url(http://maps.googleapis.com/maps/api/staticmap?key=AIzaSyAmbXq8KeJgDXoUTdpCyr7K-n3mrKBpPMg&center='+ position.coords.latitude +','+ position.coords.longitude +'&zoom=10&size=1600x1600&sensor=false)');
 
 		geocoder.geocode({'latLng': latlng}, function(results, status) {
 			if (status == google.maps.GeocoderStatus.OK) {
 				if (results[0]) {
+					// For mobile devices Success function is continuous calling success
+					// So it is rendering the same page in a several secons period.
+					// We do no render if the city is the same as the last call
 					city 			= results[0].address_components[2].long_name;
-					userCity 		= city;
-					userPosition	= position;
-					render (city, position);
+
+					if (city != userCity) {
+						userCity 		= city;
+						userPosition	= position;
+						render (city, position);
+					}	
 				}
 			}
 		});
@@ -68,8 +59,8 @@
 	 
 	$('#mainsearch').typeahead({local: cities})
 	.on('typeahead:selected', function(e){
-		var val = $(this).val();
 		$('#mainsearch').trigger('blur');
+		var val = $(this).val();
 		render(val, null);	
    });
 
