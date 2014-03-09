@@ -23,9 +23,12 @@
 		});
 	}
 
-	function success(position) {
-		if (navigator.geolocation) {
-			navigator.geolocation.getCurrentPosition(success, null, {enableHighAccuracy: true});
+	function success (position, high) {
+
+		if (navigator.geolocation && high !== true) {
+			navigator.geolocation.getCurrentPosition(function (position) {
+				success(position, true);
+			}, null, {enableHighAccuracy: true});
 		}
 
 		var coord, map, latlng, coords, geocoder, city;
