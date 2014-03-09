@@ -39,16 +39,10 @@
 		geocoder.geocode({'latLng': latlng}, function(results, status) {
 			if (status == google.maps.GeocoderStatus.OK) {
 				if (results[0]) {
-					// For mobile devices Success function is continuous calling success
-					// So it is rendering the same page in a several secons period.
-					// We do no render if the city is the same as the last call
 					city 			= results[0].address_components[2].long_name;
-
-					if (city != userCity) {
-						userCity 		= city;
-						userPosition	= position;
-						render (city, position);
-					}	
+					userCity 		= city;
+					userPosition	= position;
+					render (city, position);	
 				}
 			}
 		});
